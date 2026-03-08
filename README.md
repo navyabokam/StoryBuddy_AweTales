@@ -1,4 +1,7 @@
-# Voice Story Assistant (Easy Guide)
+# StoryBuddy - Voice Story Assistant (Easy Guide)
+
+StoryBuddy - Voice Story Assistant is an interactive web app that turns spoken input into kid-friendly storytelling conversations.
+It supports both one-shot voice requests and chunked streaming voice input, keeps multi-chat session history in Flask session state, and returns AI-generated story responses with optional server-side audio.
 
 This project is a website where you can:
 1. Click a microphone button.
@@ -9,6 +12,64 @@ This project is a website where you can:
 The website has 2 parts:
 - Frontend: what you see in the browser (`HTML`, `CSS`, `JavaScript`).
 - Backend: Python server that does speech-to-text and AI reply.
+
+Core capabilities:
+- Speech-to-text with Whisper (or `faster-whisper` when enabled).
+- Story/Q&A generation through Groq's OpenAI-compatible chat API.
+- Lightweight retrieval-augmented context using `knowledge.txt` and a FAISS vector store.
+- Session-based chat management (`new`, `switch`, `clear`, `delete`).
+- Safety guardrails for self-harm requests with crisis-support response.
+
+## Architecture
+
+High-level request flow:
+
+1. Browser UI (`templates/index.html`, `static/app.js`) records microphone audio.
+2. Frontend sends audio to Flask API:
+- `POST /api/voice` for full audio upload.
+- `POST /api/voice/stream` for chunked streaming uploads.
+3. Backend (`main.py`) decodes and normalizes WAV audio, then applies preprocessing:
+- optional noise reduction,
+- silence trimming,
+- short-input filtering.
+4. ASR pipeline transcribes audio into text using Whisper/faster-whisper.
+5. Backend optionally retrieves relevant context from `knowledge.txt` using LangChain + FAISS.
+6. Prompt + conversation history are sent to Groq (`llama-3.1-8b-instant`) via OpenAI SDK.
+7. Response is post-processed, saved into session chat history, and returned as JSON.
+8. If enabled, backend also synthesizes TTS and returns base64 WAV audio.
+
+Main architectural components:
+- Presentation layer: HTML/CSS/JS single-page interface.
+- API layer: Flask routes for state, chat lifecycle, and voice processing.
+- AI pipeline layer: ASR, transcript cleanup, RAG retrieval, LLM response generation.
+- State layer: per-user session storage in Flask signed cookies/session state.
+
+## Tech Stack
+
+Frontend:
+- HTML5 templates (`Jinja2` render via Flask).
+- CSS3 (`static/styles.css`).
+- Vanilla JavaScript (`static/app.js`) for recording, API calls, and UI updates.
+
+Backend:
+- Python 3.x.
+- Flask (`main.py`) for HTTP API and templating.
+- `python-dotenv` for environment configuration.
+
+AI/Audio/ML:
+- `openai-whisper` and optional `faster-whisper` for ASR.
+- `openai` SDK with Groq OpenAI-compatible endpoint.
+- `librosa`, `numpy`, `scipy`, `noisereduce` for audio preprocessing.
+- `pyttsx3` for optional server-side TTS generation.
+- `torch` for model runtime support.
+
+RAG and retrieval:
+- LangChain (`langchain`, `langchain-community`, `langchain-text-splitters`).
+- `FAISS` vector index (`faiss-cpu`).
+- Hugging Face sentence embeddings (`all-MiniLM-L6-v2` via `langchain-huggingface`).
+
+Legacy/alternate interface:
+- `app.py` contains an older Streamlit-based interface retained for reference.
 
 ## What You Need First
 
