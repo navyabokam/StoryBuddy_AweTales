@@ -13,6 +13,14 @@ The website has 2 parts:
 - Frontend: what you see in the browser (`HTML`, `CSS`, `JavaScript`).
 - Backend: Python server that does speech-to-text and AI reply.
 
+## Demo
+
+Demo video: https://drive.google.com/file/d/1PWasDh7uJk5frgo7tENIdbFNFXCSF13n/view?usp=sharing
+
+## UI Preview
+
+![StoryBuddy UI](UI.png)
+
 Core capabilities:
 - Speech-to-text with Whisper (or `faster-whisper` when enabled).
 - Story/Q&A generation through Groq's OpenAI-compatible chat API.
