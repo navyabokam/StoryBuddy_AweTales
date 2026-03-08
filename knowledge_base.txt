@@ -1,0 +1,25 @@
+# Knowledge Base - Voice AI Assistant
+
+## Voice AI Assistant Hackathon 2026
+The Voice AI Assistant Hackathon 2026 is an event dedicated to building the most intuitive and responsive voice-first applications.
+Participants are encouraged to explore advanced combinations of ASR (Automatic Speech Recognition), RAG (Retrieval-Augmented Generation), and TTS (Text-to-Speech).
+
+## Technical Specifications
+- **ASR**: OpenAI Whisper is used for high-accuracy speech-to-text.
+- **RAG**: FAISS (Facebook AI Similarity Search) is the vector database of choice, with Sentence Transformers for embedding generation.
+- **LLM**: Grok (by xAI) is the core reasoning engine, providing context-aware answers.
+- **TTS**: Coqui TTS provides human-like speech synthesis for auditory responses.
+
+## Future of Conversational AI
+The future involves low-latency, emotionally aware agents.
+By combining multi-modal inputs with robust retrieval systems, we can create assistants that truly understand natural human intent.
+
+## How to use this system
+1. Click the "Record Voice" button.
+2. Speak clearly into your microphone for 3-5 seconds.
+3. Wait for the system to process: Whisper transcribes text, RAG retrieves relevant document context, Grok generates a reply, and Coqui TTS synthesizes audio.
+4. Listen to the AI's response through the Streamlit interface.
+
+## Support and Documentation
+For any issues, please refer to the project documentation at https://voice-ai-hackathon.example.com.
+Support is available in the community Slack channel #hackathon-2026.

@@ -1,0 +1,13 @@
+Artificial intelligence is the simulation of human intelligence in machines.
+
+Machine learning is a subset of artificial intelligence that allows systems to learn from data.
+
+Deep learning is a type of machine learning using neural networks.
+
+Voice assistants use speech recognition and natural language processing.
+
+The Voice AI Assistant Hackathon 2026 is an event dedicated to building intuitive and responsive voice-first applications.
+
+Grok is the Large Language Model developed by xAI, used for high-level reasoning and conversation.
+
+Whisper is an automatic speech recognition (ASR) system developed by OpenAI.

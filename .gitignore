@@ -1,0 +1,6 @@
+.env
+.venv/
+*.wav
+AweTales_StoryTelling/
+__pycache__/
+*.pyc
