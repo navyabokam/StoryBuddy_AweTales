@@ -1,0 +1,72 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Calibri;}}
+\fs24
+\pard\qc\b Installation and Setup Guide\b0\par
+\pard\qc Project: StoryBuddy / AweTales - Conversational Voice AI Assistant\par
+\pard\qc Task ID: AWE_T1\par
+\par
+\pard\b Problem Statement\b0\par
+\b Title:\b0 End-to-End Real-Time Conversational Voice AI Pipeline\par
+\par
+The objective of this project is to design and implement a real-time conversational AI system that accepts live voice input, preprocesses audio, converts speech to text, understands user intent using a Large Language Model, retrieves relevant context using Retrieval Augmented Generation (RAG), and returns a meaningful conversational response with optional speech output.\par
+\par
+\b System Overview\b0\par
+The implemented pipeline is:\par
+\par
+Microphone Input -> Audio Capture/Streaming -> Audio Preprocessing (noise reduction + silence handling) -> Speech Recognition (Whisper) -> Knowledge Retrieval (FAISS + knowledge.txt) -> LLM Reasoning (Groq) -> Text Response (and optional TTS audio)\par
+\par
+\b Prerequisites\b0\par
+Install the following before running the project:\par
+\par
+1. Python 3.9 or higher\par
+2. Git\par
+3. FFmpeg (required for Whisper audio processing)\par
+\par
+\b Step 1: Clone the Repository\b0\par
+git clone https://github.com/navyabokam/StoryBuddy_AweTales.git\par
+cd StoryBuddy_AweTales\par
+\par
+\b Step 2: Install Required Dependencies\b0\par
+pip install -r requirements.txt\par
+\par
+This installs required libraries including Flask, Whisper, OpenAI SDK (Groq-compatible), FAISS, LangChain, audio processing libraries, and related dependencies.\par
+\par
+\b Step 3: Configure Environment Variables\b0\par
+Create a file named .env in the project root and add:\par
+\par
+GROK_API_KEY=your_api_key_here\par
+APP_SECRET=your_secret_here\par
+\par
+Optional:\par
+WHISPER_MODEL=tiny\par
+ENABLE_ASR_WARMUP=0\par
+FLASK_DEBUG=0\par
+\par
+\b Step 4: Run the Application\b0\par
+Run the Flask backend:\par
+python main.py\par
+\par
+Open in browser:\par
+http://127.0.0.1:8000\par
+\par
+\b Step 5: Application Workflow\b0\par
+1. Click Start Talking (microphone button).\par
+2. Speak your query clearly.\par
+3. The system captures and preprocesses audio.\par
+4. Speech is converted to text using Whisper ASR.\par
+5. Context is retrieved from the knowledge base (knowledge.txt) using FAISS-based RAG.\par
+6. Query + context are sent to Groq LLM for response generation.\par
+7. The generated response is shown in chat and stored in session history.\par
+8. Optional server-side TTS can return spoken output audio.\par
+\par
+\b Demo Link\b0\par
+https://drive.google.com/file/d/1PWasDh7uJk5frgo7tENIdbFNFXCSF13n/view?usp=sharing\par
+\par
+\b Project Repository\b0\par
+https://github.com/navyabokam/StoryBuddy_AweTales.git\par
+\par
+\b Notes\b0\par
+1. Main implementation runs through main.py (Flask web app).\par
+2. app.py is an older Streamlit-based version retained for reference.\par
+3. Ensure FFmpeg is correctly added to system PATH before running.\par
+}
